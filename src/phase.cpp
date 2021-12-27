@@ -1,6 +1,13 @@
-#include "phase.h"
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: Jiawen Ji
+ * @Date: 2021-12-22 10:52:25
+ * @LastEditors: Jiawen Ji
+ * @LastEditTime: 2021-12-27 10:21:40
+ */
 
-#include <vector>
+#include "phase.h"
 
 #define _USE_MATH_DEFINES
 #include <math.h>
