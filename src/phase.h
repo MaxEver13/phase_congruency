@@ -4,13 +4,24 @@
  * @Author: Jiawen Ji
  * @Date: 2021-12-22 10:52:25
  * @LastEditors: Jiawen Ji
- * @LastEditTime: 2021-12-27 10:13:08
+ * @LastEditTime: 2021-12-27 11:48:28
  */
 #pragma once
 #include <vector>
 #include <opencv2/core/types.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
+
+
+struct Corner
+{
+  int x;        //!< x-coordinate of corner in the image.
+  int y;        //!< y-coordinate of corner in the image.
+  float score;  //!< pixel value of the corner.
+  Corner(int x, int y, float score) :
+    x(x), y(y), score(score)
+  {}
+};
 
 namespace cv
 {

@@ -4,7 +4,7 @@
  * @Author: Jiawen Ji
  * @Date: 2021-12-22 10:52:25
  * @LastEditors: Jiawen Ji
- * @LastEditTime: 2021-12-27 10:14:28
+ * @LastEditTime: 2021-12-27 13:39:15
  */
 #include "phase.h"
 #include <iostream>
@@ -64,43 +64,65 @@ int main(int argc, char** argv)
 
         int lable[corners.rows][corners.cols];
 
-        // 筛选一下，避免点太密集
-        for (size_t i = 0; i < corners.rows; i++)
-        {
-           for (size_t j = 0; j < corners.cols; j++)
-           {
-               if (127 < corners.at<uchar>(i, j) && lable[i][j] == 0)
-               {
-                   lable[i][j] = 1;
-                   // 周围的点涂黑
-                   for (size_t m = 1; m < 15; m++)
-                   {
-                       for (size_t n = 1; n < 15; n++)
-                       {
-                           if (corners.at<uchar>(i+m, j+n) > 127 && lable[i+m][j+n] == 0)
-                           {
-                               lable[i+m][j+n] = 1;
-                               corners.at<uchar>(i+m, j+n) = 0;
-                           }
-                                
-                       }                       
-                   }
-               }
-           }           
-        }
+        // 将图片进行栅格化，每个栅格里面只选取最好的角点
+        const int cell_size = 15;
+        const int grid_n_cols = ceil(static_cast<double>(corners.cols)/cell_size);
+        const int grid_n_rows = ceil(static_cast<double>(corners.rows)/cell_size);
+        vector<bool> grid(grid_n_cols *grid_n_rows, false);
+
+        const int threshold = 127;
+
+        // 初值都为127
+        vector<Corner> Corners(grid_n_cols *grid_n_rows, Corner(0, 0, threshold));
 
         // 遍历找出大于127的点
+        vector<Corner> detect_corners;
         for (size_t i = 0; i < corners.rows; i++)
         {
            for (size_t j = 0; j < corners.cols; j++)
            {
                if (127 < corners.at<uchar>(i, j))
                {
-                   circle(color, Point(j, i), 1, CV_RGB(0, 255, 0), 2);
+                   detect_corners.push_back(Corner(i, j, (float)corners.at<uchar>(i, j)));
                }
-           }
-           
+           }           
         }
+        
+        // 每个栅格里面只保存一个角点
+        for (auto it = detect_corners.begin(); it != detect_corners.end(); it++)
+        {
+            // 栅格id
+            int index = static_cast<int>((*it).x/cell_size)*grid_n_cols + 
+                        static_cast<int>((*it).y/cell_size);
+
+            // 栅格已经有角点
+            if (grid[index])
+            {
+                // 质量更好的角点，需要更新
+                if ((*it).score > Corners.at(index).score)
+                {
+                    Corners.at(index) = Corner((*it).x, (*it).y, (*it).score);
+                } else {
+                    // 否则不更新
+                    continue;
+                }
+            } 
+                
+            
+            // 新加入一个角点
+            if ((*it).score > threshold)
+            {
+                Corners.at(index) = Corner((*it).x, (*it).y, (*it).score);
+                grid[index] = true;
+            }
+        } 
+
+        // 将角点画出来
+        for (auto it = Corners.begin(); it != Corners.end(); it++)
+        {
+            if ((*it).score > threshold)
+                circle(color, Point((*it).y, (*it).x), 1, CV_RGB(0, 255, 0), 2);
+        }        
 
         imwrite("corners.png", color);
         
