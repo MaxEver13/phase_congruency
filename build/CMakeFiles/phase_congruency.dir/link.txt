@@ -1,2 +1,0 @@
-/usr/bin/ar qc libphase_congruency.a  CMakeFiles/phase_congruency.dir/src/phase.cpp.o
-/usr/bin/ranlib libphase_congruency.a

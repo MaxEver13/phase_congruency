@@ -4,7 +4,7 @@
  * @Author: Jiawen Ji
  * @Date: 2021-12-22 10:52:25
  * @LastEditors: Jiawen Ji
- * @LastEditTime: 2021-12-27 13:39:15
+ * @LastEditTime: 2021-12-27 21:15:06
  */
 #include "phase.h"
 #include <iostream>
@@ -61,8 +61,6 @@ int main(int argc, char** argv)
 
         Mat edges, corners;
         pc.feature(image, edges, corners);
-
-        int lable[corners.rows][corners.cols];
 
         // 将图片进行栅格化，每个栅格里面只选取最好的角点
         const int cell_size = 15;
