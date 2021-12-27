@@ -9,10 +9,6 @@
 /home/max/Refs/PhaseCongruency/src/phase.cpp
 phase.h
 /home/max/Refs/PhaseCongruency/src/phase.h
-opencv2/imgproc.hpp
--
-opencv2/highgui/highgui.hpp
--
 vector
 -
 math.h
@@ -22,5 +18,9 @@ math.h
 vector
 -
 opencv2/core/types.hpp
+-
+opencv2/imgproc.hpp
+-
+opencv2/highgui/highgui.hpp
 -
 

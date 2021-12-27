@@ -4,12 +4,9 @@
  * @Author: Jiawen Ji
  * @Date: 2021-12-22 10:52:25
  * @LastEditors: Jiawen Ji
- * @LastEditTime: 2021-12-23 18:04:49
+ * @LastEditTime: 2021-12-27 10:14:28
  */
 #include "phase.h"
-
-#include <opencv2/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 
 
@@ -86,12 +83,10 @@ int main(int argc, char** argv)
                                corners.at<uchar>(i+m, j+n) = 0;
                            }
                                 
-                       }
-                       
+                       }                       
                    }
                }
-           }
-           
+           }           
         }
 
         // 遍历找出大于127的点
