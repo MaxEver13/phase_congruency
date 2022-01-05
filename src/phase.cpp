@@ -4,15 +4,17 @@
  * @Author: Jiawen Ji
  * @Date: 2021-12-22 10:52:25
  * @LastEditors: Jiawen Ji
- * @LastEditTime: 2021-12-27 10:21:40
+ * @LastEditTime: 2022-01-05 10:44:22
  */
 
 #include "phase.h"
+#include <iostream>
 
 #define _USE_MATH_DEFINES
 #include <math.h>
 
 using namespace cv;
+using namespace std;
 
 // Rearrange the quadrants of Fourier image so that the origin is at
 // the image center
@@ -135,6 +137,81 @@ PhaseCongruency::PhaseCongruency(Size _size, size_t _nscale, size_t _norient)
         }//scale
     }//orientation
     //Filter ready
+}
+
+int PhaseCongruency::detectCorners(cv::Mat _image, std::vector<Corner>& _corners, int _threshold, int _cell_size)
+{
+    Mat image = _image.clone();
+
+    if (image.empty())
+    {
+        cout << "Cannot read image file !" << endl;
+        return -1;
+    }
+    
+    Mat mat_edges, mat_corners;
+    feature(image, mat_edges, mat_corners);
+
+    namedWindow("corner_image");
+    imshow("corner_image", mat_corners);
+
+    const int threshold = _threshold;
+
+    // 将图片进行栅格化，每个栅格里面只选取最好的角点
+    const int cell_size = _cell_size;
+    const int grid_n_cols = ceil(static_cast<double>(mat_corners.cols)/cell_size);
+    const int grid_n_rows = ceil(static_cast<double>(mat_corners.rows)/cell_size);
+    vector<bool> grid(grid_n_cols *grid_n_rows, false);
+
+    // 初值都为127
+    vector<Corner> Corners(grid_n_cols *grid_n_rows, Corner(0, 0, threshold));
+
+    // 遍历找出大于127的点
+    vector<Corner> detect_corners;
+    for (int i = 0; i < mat_corners.rows; i++)
+    {
+        for (int j = 0; j < mat_corners.cols; j++)
+        {
+            if (threshold < mat_corners.at<uchar>(i, j))
+            {
+                detect_corners.push_back(Corner(i, j, (float)mat_corners.at<uchar>(i, j)));
+            }
+        }           
+    }
+    
+    // 每个栅格里面只保存一个角点
+    for (auto it = detect_corners.begin(); it != detect_corners.end(); it++)
+    {
+        // 栅格id
+        int index = static_cast<int>((*it).x/cell_size)*grid_n_cols + 
+                    static_cast<int>((*it).y/cell_size);
+
+        // 栅格已经有角点
+        if (grid[index])
+        {
+            // 质量更好的角点，需要更新
+            if ((*it).score > Corners.at(index).score)
+            {
+                Corners.at(index) = Corner((*it).x, (*it).y, (*it).score);
+            } else {
+                // 否则不更新
+                continue;
+            }
+        } 
+            
+        
+        // 新加入一个角点
+        if ((*it).score > threshold)
+        {
+            Corners.at(index) = Corner((*it).x, (*it).y, (*it).score);
+            grid[index] = true;
+        }
+    } 
+
+    // 赋值
+    _corners = Corners;
+
+    return 0;
 }
 
 void PhaseCongruency::setConst(PhaseCongruencyConst _pcc)

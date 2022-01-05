@@ -26,7 +26,7 @@ link_directories(
 ###########
 
 
-add_library(${PROJECT_NAME} src/phase.cpp)
+add_library(${PROJECT_NAME} SHARED src/phase.cpp)
 
 
 add_executable(${PROJECT_NAME}_test src/main.cpp)

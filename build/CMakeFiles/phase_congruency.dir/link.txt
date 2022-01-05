@@ -1,0 +1,1 @@
+/usr/bin/x86_64-linux-gnu-g++-7 -fPIC -O3 -Wall -g -pthread  -shared -Wl,-soname,libphase_congruency.so -o libphase_congruency.so CMakeFiles/phase_congruency.dir/src/phase.cpp.o 
