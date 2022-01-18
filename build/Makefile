@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/max/Refs/PhaseCongruency
+CMAKE_SOURCE_DIR = /home/max/Projects/PhaseCongruency
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/max/Refs/PhaseCongruency/build
+CMAKE_BINARY_DIR = /home/max/Projects/PhaseCongruency/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/max/Refs/PhaseCongruency/build/CMakeFiles /home/max/Refs/PhaseCongruency/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/max/Projects/PhaseCongruency/build/CMakeFiles /home/max/Projects/PhaseCongruency/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/max/Refs/PhaseCongruency/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/max/Projects/PhaseCongruency/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -135,6 +135,33 @@ phase_congruency_test: cmake_check_build_system
 phase_congruency_test/fast:
 	$(MAKE) -f CMakeFiles/phase_congruency_test.dir/build.make CMakeFiles/phase_congruency_test.dir/build
 .PHONY : phase_congruency_test/fast
+
+src/file_dir.o: src/file_dir.cpp.o
+
+.PHONY : src/file_dir.o
+
+# target to build an object file
+src/file_dir.cpp.o:
+	$(MAKE) -f CMakeFiles/phase_congruency.dir/build.make CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o
+.PHONY : src/file_dir.cpp.o
+
+src/file_dir.i: src/file_dir.cpp.i
+
+.PHONY : src/file_dir.i
+
+# target to preprocess a source file
+src/file_dir.cpp.i:
+	$(MAKE) -f CMakeFiles/phase_congruency.dir/build.make CMakeFiles/phase_congruency.dir/src/file_dir.cpp.i
+.PHONY : src/file_dir.cpp.i
+
+src/file_dir.s: src/file_dir.cpp.s
+
+.PHONY : src/file_dir.s
+
+# target to generate assembly for a file
+src/file_dir.cpp.s:
+	$(MAKE) -f CMakeFiles/phase_congruency.dir/build.make CMakeFiles/phase_congruency.dir/src/file_dir.cpp.s
+.PHONY : src/file_dir.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -200,6 +227,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... phase_congruency"
 	@echo "... phase_congruency_test"
+	@echo "... src/file_dir.o"
+	@echo "... src/file_dir.i"
+	@echo "... src/file_dir.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

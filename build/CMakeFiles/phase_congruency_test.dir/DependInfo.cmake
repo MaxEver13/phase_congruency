@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/max/Refs/PhaseCongruency/src/main.cpp" "/home/max/Refs/PhaseCongruency/build/CMakeFiles/phase_congruency_test.dir/src/main.cpp.o"
+  "/home/max/Projects/PhaseCongruency/src/main.cpp" "/home/max/Projects/PhaseCongruency/build/CMakeFiles/phase_congruency_test.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,7 +17,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/max/Refs/PhaseCongruency/build/CMakeFiles/phase_congruency.dir/DependInfo.cmake"
+  "/home/max/Projects/PhaseCongruency/build/CMakeFiles/phase_congruency.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

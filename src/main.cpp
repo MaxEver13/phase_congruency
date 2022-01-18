@@ -4,9 +4,10 @@
  * @Author: Jiawen Ji
  * @Date: 2021-12-22 10:52:25
  * @LastEditors: Jiawen Ji
- * @LastEditTime: 2022-01-05 10:41:06
+ * @LastEditTime: 2022-01-18 14:33:39
  */
 #include "phase.h"
+#include "file_dir.h"
 #include <iostream>
 
 
@@ -42,6 +43,16 @@ int main(int argc, char** argv)
         const string inputFileName = parser.get<String>(inFileKey);
 
         Mat image = imread(inputFileName, IMREAD_GRAYSCALE);
+        Mat img_src = image.clone();
+
+        // 读取文件
+        // char outBuf[1024*1024];
+        // ReadStrFromFile("/home/max/Projects/PhaseCongruency/example/test2.hex", outBuf, sizeof(outBuf));
+
+        // const int height = 165;
+        // const int width = 186;
+        // cv::Mat image(height, width, CV_8UC1);
+        // std::memcpy(image.data, outBuf, height*width);
 
         if (image.empty())
         {
@@ -56,22 +67,25 @@ int main(int argc, char** argv)
 
         // 转换成rgb用于绘制角点
         Mat color;
-        cvtColor(image, color, COLOR_GRAY2RGB);
+        cvtColor(img_src, color, COLOR_GRAY2RGB);
 
         // step2: 构造
         PhaseCongruency pc(image.size(), 4, 6);        
 
         // step3: 检测角点
         vector<Corner> corners;
-        pc.detectCorners(image, corners);    
+        pc.detectCorners(image, corners);
 
         // step4: 将角点画出来
+        // 坐标还原
+        double fx = (double)img_src.cols/size.width;
+        double fy = (double)img_src.rows/size.height;
         for (auto it = corners.begin(); it != corners.end(); it++)
         {
-            if ((*it).score > 127)
-                circle(color, Point((*it).y, (*it).x), 1, CV_RGB(0, 255, 0), 2);
-        }        
-
+            circle(color, Point((*it).y * fy, (*it).x * fx), 0.1, CV_RGB(0, 255, 0), 2);
+        }
+                
+        std::cout << corners.size()  << std::endl;
         imwrite("corners.png", color);   
         
 

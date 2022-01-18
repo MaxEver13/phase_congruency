@@ -4,7 +4,7 @@
  * @Author: Jiawen Ji
  * @Date: 2021-12-22 10:52:25
  * @LastEditors: Jiawen Ji
- * @LastEditTime: 2022-01-05 10:44:22
+ * @LastEditTime: 2022-01-18 13:45:53
  */
 
 #include "phase.h"
@@ -163,8 +163,8 @@ int PhaseCongruency::detectCorners(cv::Mat _image, std::vector<Corner>& _corners
     const int grid_n_rows = ceil(static_cast<double>(mat_corners.rows)/cell_size);
     vector<bool> grid(grid_n_cols *grid_n_rows, false);
 
-    // 初值都为127
-    vector<Corner> Corners(grid_n_cols *grid_n_rows, Corner(0, 0, threshold));
+    // 初值都为0
+    vector<Corner> Corners(grid_n_cols *grid_n_rows, Corner(0, 0, 0));
 
     // 遍历找出大于127的点
     vector<Corner> detect_corners;
@@ -209,7 +209,13 @@ int PhaseCongruency::detectCorners(cv::Mat _image, std::vector<Corner>& _corners
     } 
 
     // 赋值
-    _corners = Corners;
+    for (auto it = Corners.begin(); it != Corners.end(); it++)
+    {
+        if ((*it).score > threshold)
+        {
+            _corners.push_back(Corner((*it).x, (*it).y, (*it).score));
+        }
+    }
 
     return 0;
 }

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/max/Refs/PhaseCongruency
+CMAKE_SOURCE_DIR = /home/max/Projects/PhaseCongruency
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/max/Refs/PhaseCongruency/build
+CMAKE_BINARY_DIR = /home/max/Projects/PhaseCongruency/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/phase_congruency.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/phase_congruency.dir/flags.make
 
 CMakeFiles/phase_congruency.dir/src/phase.cpp.o: CMakeFiles/phase_congruency.dir/flags.make
 CMakeFiles/phase_congruency.dir/src/phase.cpp.o: ../src/phase.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/max/Refs/PhaseCongruency/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/phase_congruency.dir/src/phase.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/phase_congruency.dir/src/phase.cpp.o -c /home/max/Refs/PhaseCongruency/src/phase.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/max/Projects/PhaseCongruency/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/phase_congruency.dir/src/phase.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/phase_congruency.dir/src/phase.cpp.o -c /home/max/Projects/PhaseCongruency/src/phase.cpp
 
 CMakeFiles/phase_congruency.dir/src/phase.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/phase_congruency.dir/src/phase.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/max/Refs/PhaseCongruency/src/phase.cpp > CMakeFiles/phase_congruency.dir/src/phase.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/max/Projects/PhaseCongruency/src/phase.cpp > CMakeFiles/phase_congruency.dir/src/phase.cpp.i
 
 CMakeFiles/phase_congruency.dir/src/phase.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/phase_congruency.dir/src/phase.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/max/Refs/PhaseCongruency/src/phase.cpp -o CMakeFiles/phase_congruency.dir/src/phase.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/max/Projects/PhaseCongruency/src/phase.cpp -o CMakeFiles/phase_congruency.dir/src/phase.cpp.s
 
 CMakeFiles/phase_congruency.dir/src/phase.cpp.o.requires:
 
@@ -81,17 +81,84 @@ CMakeFiles/phase_congruency.dir/src/phase.cpp.o.provides: CMakeFiles/phase_congr
 CMakeFiles/phase_congruency.dir/src/phase.cpp.o.provides.build: CMakeFiles/phase_congruency.dir/src/phase.cpp.o
 
 
+CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o: CMakeFiles/phase_congruency.dir/flags.make
+CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o: ../src/file_dir.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/max/Projects/PhaseCongruency/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o -c /home/max/Projects/PhaseCongruency/src/file_dir.cpp
+
+CMakeFiles/phase_congruency.dir/src/file_dir.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/phase_congruency.dir/src/file_dir.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/max/Projects/PhaseCongruency/src/file_dir.cpp > CMakeFiles/phase_congruency.dir/src/file_dir.cpp.i
+
+CMakeFiles/phase_congruency.dir/src/file_dir.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/phase_congruency.dir/src/file_dir.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/max/Projects/PhaseCongruency/src/file_dir.cpp -o CMakeFiles/phase_congruency.dir/src/file_dir.cpp.s
+
+CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o.requires:
+
+.PHONY : CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o.requires
+
+CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o.provides: CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o.requires
+	$(MAKE) -f CMakeFiles/phase_congruency.dir/build.make CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o.provides.build
+.PHONY : CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o.provides
+
+CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o.provides.build: CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o
+
+
 # Object files for target phase_congruency
 phase_congruency_OBJECTS = \
-"CMakeFiles/phase_congruency.dir/src/phase.cpp.o"
+"CMakeFiles/phase_congruency.dir/src/phase.cpp.o" \
+"CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o"
 
 # External object files for target phase_congruency
 phase_congruency_EXTERNAL_OBJECTS =
 
 libphase_congruency.so: CMakeFiles/phase_congruency.dir/src/phase.cpp.o
+libphase_congruency.so: CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o
 libphase_congruency.so: CMakeFiles/phase_congruency.dir/build.make
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_shape.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_stitching.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_superres.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_videostab.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_aruco.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_bgsegm.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_bioinspired.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_ccalib.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_datasets.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_dpm.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_face.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_freetype.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_fuzzy.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_hdf.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_line_descriptor.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_optflow.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_plot.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_reg.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_saliency.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_stereo.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_structured_light.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_surface_matching.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_text.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_ximgproc.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_xobjdetect.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_xphoto.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_video.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_viz.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_phase_unwrapping.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_rgbd.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_calib3d.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_features2d.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_flann.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_objdetect.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_ml.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_videoio.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_imgcodecs.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.3.2.0
+libphase_congruency.so: /usr/lib/x86_64-linux-gnu/libopencv_core.so.3.2.0
 libphase_congruency.so: CMakeFiles/phase_congruency.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/max/Refs/PhaseCongruency/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library libphase_congruency.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/max/Projects/PhaseCongruency/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library libphase_congruency.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/phase_congruency.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -100,6 +167,7 @@ CMakeFiles/phase_congruency.dir/build: libphase_congruency.so
 .PHONY : CMakeFiles/phase_congruency.dir/build
 
 CMakeFiles/phase_congruency.dir/requires: CMakeFiles/phase_congruency.dir/src/phase.cpp.o.requires
+CMakeFiles/phase_congruency.dir/requires: CMakeFiles/phase_congruency.dir/src/file_dir.cpp.o.requires
 
 .PHONY : CMakeFiles/phase_congruency.dir/requires
 
@@ -108,6 +176,6 @@ CMakeFiles/phase_congruency.dir/clean:
 .PHONY : CMakeFiles/phase_congruency.dir/clean
 
 CMakeFiles/phase_congruency.dir/depend:
-	cd /home/max/Refs/PhaseCongruency/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/max/Refs/PhaseCongruency /home/max/Refs/PhaseCongruency /home/max/Refs/PhaseCongruency/build /home/max/Refs/PhaseCongruency/build /home/max/Refs/PhaseCongruency/build/CMakeFiles/phase_congruency.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/max/Projects/PhaseCongruency/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/max/Projects/PhaseCongruency /home/max/Projects/PhaseCongruency /home/max/Projects/PhaseCongruency/build /home/max/Projects/PhaseCongruency/build /home/max/Projects/PhaseCongruency/build/CMakeFiles/phase_congruency.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/phase_congruency.dir/depend
 

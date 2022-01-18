@@ -26,7 +26,8 @@ link_directories(
 ###########
 
 
-add_library(${PROJECT_NAME} SHARED src/phase.cpp)
+add_library(${PROJECT_NAME} SHARED src/phase.cpp src/file_dir.cpp)
+target_link_libraries(${PROJECT_NAME}  ${OpenCV_LIBS})
 
 
 add_executable(${PROJECT_NAME}_test src/main.cpp)

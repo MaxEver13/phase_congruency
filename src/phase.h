@@ -4,7 +4,7 @@
  * @Author: Jiawen Ji
  * @Date: 2021-12-22 10:52:25
  * @LastEditors: Jiawen Ji
- * @LastEditTime: 2022-01-05 10:39:33
+ * @LastEditTime: 2022-01-06 16:02:35
  */
 #pragma once
 #include <vector>
@@ -75,3 +75,19 @@ private:
 
     std::vector<cv::Mat> filter;
 };
+
+
+extern "C"{
+
+    PhaseCongruency* GetPhaseCongruency(cv::Size _img_size, size_t _nscale, size_t _norient)
+    {
+        PhaseCongruency* pc = new PhaseCongruency(_img_size, _nscale, _norient);
+        return pc;
+    }
+
+    int doDetectCorners(PhaseCongruency* pc, cv::Mat _image, std::vector<Corner>& _corners, int _threshold = 127, int _cell_size = 15)
+    {
+    	int success = pc->detectCorners(_image, _corners, _threshold, _cell_size);
+        return success;
+    }
+}

@@ -6,13 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/home/max/Refs/PhaseCongruency/src/main.cpp
+/home/max/Projects/PhaseCongruency/src/file_dir.h
+string
+-
+fstream
+-
+vector
+-
+
+/home/max/Projects/PhaseCongruency/src/main.cpp
 phase.h
-/home/max/Refs/PhaseCongruency/src/phase.h
+/home/max/Projects/PhaseCongruency/src/phase.h
+file_dir.h
+/home/max/Projects/PhaseCongruency/src/file_dir.h
 iostream
 -
 
-/home/max/Refs/PhaseCongruency/src/phase.h
+/home/max/Projects/PhaseCongruency/src/phase.h
 vector
 -
 opencv2/core/types.hpp
