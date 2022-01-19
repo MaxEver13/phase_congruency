@@ -19,7 +19,13 @@ phase.h
 /home/max/Projects/PhaseCongruency/src/phase.h
 file_dir.h
 /home/max/Projects/PhaseCongruency/src/file_dir.h
+mapbeautif.h
+/home/max/Projects/PhaseCongruency/src/mapbeautif.h
 iostream
+-
+
+/home/max/Projects/PhaseCongruency/src/mapbeautif.h
+stdint.h
 -
 
 /home/max/Projects/PhaseCongruency/src/phase.h

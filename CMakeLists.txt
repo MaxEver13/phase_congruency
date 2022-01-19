@@ -26,7 +26,7 @@ link_directories(
 ###########
 
 
-add_library(${PROJECT_NAME} SHARED src/phase.cpp src/file_dir.cpp)
+add_library(${PROJECT_NAME} SHARED src/phase.cpp src/file_dir.cpp src/mapbeautif.cpp)
 target_link_libraries(${PROJECT_NAME}  ${OpenCV_LIBS})
 
 

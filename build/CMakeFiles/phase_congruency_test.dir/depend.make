@@ -3,5 +3,6 @@
 
 CMakeFiles/phase_congruency_test.dir/src/main.cpp.o: ../src/file_dir.h
 CMakeFiles/phase_congruency_test.dir/src/main.cpp.o: ../src/main.cpp
+CMakeFiles/phase_congruency_test.dir/src/main.cpp.o: ../src/mapbeautif.h
 CMakeFiles/phase_congruency_test.dir/src/main.cpp.o: ../src/phase.h
 

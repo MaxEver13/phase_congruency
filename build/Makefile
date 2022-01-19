@@ -190,6 +190,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/phase_congruency_test.dir/build.make CMakeFiles/phase_congruency_test.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/mapbeautif.o: src/mapbeautif.cpp.o
+
+.PHONY : src/mapbeautif.o
+
+# target to build an object file
+src/mapbeautif.cpp.o:
+	$(MAKE) -f CMakeFiles/phase_congruency.dir/build.make CMakeFiles/phase_congruency.dir/src/mapbeautif.cpp.o
+.PHONY : src/mapbeautif.cpp.o
+
+src/mapbeautif.i: src/mapbeautif.cpp.i
+
+.PHONY : src/mapbeautif.i
+
+# target to preprocess a source file
+src/mapbeautif.cpp.i:
+	$(MAKE) -f CMakeFiles/phase_congruency.dir/build.make CMakeFiles/phase_congruency.dir/src/mapbeautif.cpp.i
+.PHONY : src/mapbeautif.cpp.i
+
+src/mapbeautif.s: src/mapbeautif.cpp.s
+
+.PHONY : src/mapbeautif.s
+
+# target to generate assembly for a file
+src/mapbeautif.cpp.s:
+	$(MAKE) -f CMakeFiles/phase_congruency.dir/build.make CMakeFiles/phase_congruency.dir/src/mapbeautif.cpp.s
+.PHONY : src/mapbeautif.cpp.s
+
 src/phase.o: src/phase.cpp.o
 
 .PHONY : src/phase.o
@@ -233,6 +260,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/mapbeautif.o"
+	@echo "... src/mapbeautif.i"
+	@echo "... src/mapbeautif.s"
 	@echo "... src/phase.o"
 	@echo "... src/phase.i"
 	@echo "... src/phase.s"

@@ -38,6 +38,16 @@ fstream
 vector
 -
 
+/home/max/Projects/PhaseCongruency/src/mapbeautif.cpp
+mapbeautif.h
+/home/max/Projects/PhaseCongruency/src/mapbeautif.h
+vector
+-
+
+/home/max/Projects/PhaseCongruency/src/mapbeautif.h
+stdint.h
+-
+
 /home/max/Projects/PhaseCongruency/src/phase.cpp
 phase.h
 /home/max/Projects/PhaseCongruency/src/phase.h
