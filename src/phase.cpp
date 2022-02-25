@@ -4,7 +4,7 @@
  * @Author: Jiawen Ji
  * @Date: 2021-12-22 10:52:25
  * @LastEditors: Jiawen Ji
- * @LastEditTime: 2022-01-18 13:45:53
+ * @LastEditTime: 2022-02-25 17:22:53
  */
 
 #include "phase.h"
@@ -15,6 +15,8 @@
 
 using namespace cv;
 using namespace std;
+
+
 
 // Rearrange the quadrants of Fourier image so that the origin is at
 // the image center
@@ -139,7 +141,12 @@ PhaseCongruency::PhaseCongruency(Size _size, size_t _nscale, size_t _norient)
     //Filter ready
 }
 
-int PhaseCongruency::detectCorners(cv::Mat _image, std::vector<Corner>& _corners, int _threshold, int _cell_size)
+double PhaseCongruency::distance(int x1, int y1, int x2, int y2)
+{
+    return sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+}
+
+int PhaseCongruency::detectCorners(cv::Mat _image, std::vector<Corner>& _corners, int _threshold, int _cell_size, int _dis_thre)
 {
     Mat image = _image.clone();
 
@@ -154,8 +161,10 @@ int PhaseCongruency::detectCorners(cv::Mat _image, std::vector<Corner>& _corners
 
     namedWindow("corner_image");
     imshow("corner_image", mat_corners);
+    cv::imwrite("corner_image.png", mat_corners);
 
     const int threshold = _threshold;
+    const int dis_threshold = _dis_thre;
 
     // 将图片进行栅格化，每个栅格里面只选取最好的角点
     const int cell_size = _cell_size;
@@ -178,13 +187,16 @@ int PhaseCongruency::detectCorners(cv::Mat _image, std::vector<Corner>& _corners
             }
         }           
     }
-    
+
     // 每个栅格里面只保存一个角点
     for (auto it = detect_corners.begin(); it != detect_corners.end(); it++)
-    {
+    {   
         // 栅格id
-        int index = static_cast<int>((*it).x/cell_size)*grid_n_cols + 
-                    static_cast<int>((*it).y/cell_size);
+        int index = static_cast<int>((*it).y/cell_size*grid_n_cols) + 
+                    static_cast<int>((*it).x/cell_size);
+        
+        if (index < 0 || index > grid_n_cols *grid_n_rows - 1)
+            continue;
 
         // 栅格已经有角点
         if (grid[index])
@@ -193,6 +205,7 @@ int PhaseCongruency::detectCorners(cv::Mat _image, std::vector<Corner>& _corners
             if ((*it).score > Corners.at(index).score)
             {
                 Corners.at(index) = Corner((*it).x, (*it).y, (*it).score);
+                continue;
             } else {
                 // 否则不更新
                 continue;
@@ -208,15 +221,40 @@ int PhaseCongruency::detectCorners(cv::Mat _image, std::vector<Corner>& _corners
         }
     } 
 
-    // 赋值
-    for (auto it = Corners.begin(); it != Corners.end(); it++)
+    //　删除不同栅格但是距离较近的点
+    for (int i = 0; i < (int)grid.size(); i++)
     {
-        if ((*it).score > threshold)
+        if (!grid[i])
+            continue;
+
+        Corner ci(Corners.at(i).x, Corners.at(i).y, Corners.at(i).score);
+        // 找到距离近的点里面，质量最好的
+        for (int j = 0; j < (int)grid.size(); j++)
         {
-            _corners.push_back(Corner((*it).x, (*it).y, (*it).score));
+            if (!grid[j])
+                continue;
+
+            Corner cj(Corners.at(j).x, Corners.at(j).y, Corners.at(j).score);            
+            if (distance(ci.x, ci.y, cj.x, cj.y) < dis_threshold)
+            {
+                // 将距离近且质量不高的角点全部标记为
+                if (i != j && cj.score < ci.score)
+                {   
+                    grid[j] = false;
+                } 
+            }
         }
+               
     }
 
+    // 赋值
+    for (int i = 0; i < (int)grid.size(); i++)
+    {
+        if (grid[i])
+            _corners.push_back(Corner(Corners.at(i).x, Corners.at(i).y, Corners.at(i).score));
+
+    }
+    
     return 0;
 }
 

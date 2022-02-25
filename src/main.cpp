@@ -4,7 +4,7 @@
  * @Author: Jiawen Ji
  * @Date: 2021-12-22 10:52:25
  * @LastEditors: Jiawen Ji
- * @LastEditTime: 2022-01-19 20:47:30
+ * @LastEditTime: 2022-02-25 17:24:34
  */
 #include "phase.h"
 #include "file_dir.h"
@@ -77,39 +77,42 @@ int main(int argc, char** argv)
 {
     try
     {
-        const String inFileKey = "@inputImage";
-        const String outFileKey = "@outputImage";
-        const String keys =
-            "{help h usage ?    |      | print this message }"
-            "{" + inFileKey + " |<none>| input image        }"
-            "{" + outFileKey + "|<none>| output image       }";
-        CommandLineParser parser(argc, argv, keys);
-        if (parser.has("help") || !parser.has(inFileKey))
-        {
-            help();
-            return 0;
-        }
-        const string inputFileName = parser.get<String>(inFileKey);
+        // const String inFileKey = "@inputImage";
+        // const String outFileKey = "@outputImage";
+        // const String keys =
+        //     "{help h usage ?    |      | print this message }"
+        //     "{" + inFileKey + " |<none>| input image        }"
+        //     "{" + outFileKey + "|<none>| output image       }";
+        // CommandLineParser parser(argc, argv, keys);
+        // if (parser.has("help") || !parser.has(inFileKey))
+        // {
+        //     help();
+        //     return 0;
+        // }
+        // const string inputFileName = parser.get<String>(inFileKey);
 
-        Mat image = imread(inputFileName, IMREAD_GRAYSCALE);
-        if (image.empty())
-        {
-            cout << "Cannot read image file " << inputFileName << endl;
-            help();
-            return -1;
-        }
-        Mat img_src = image.clone();
-        cv::imwrite("src.png", image);
+        // Mat image = imread(inputFileName, IMREAD_GRAYSCALE);
+        // if (image.empty())
+        // {
+        //     cout << "Cannot read image file " << inputFileName << endl;
+        //     help();
+        //     return -1;
+        // }
+        // Mat img_src = image.clone();
+        // cv::imwrite("src.png", image);
 
         // 读取文件
-        // char outBuf[1024*1024];
-        // ReadStrFromFile("/home/max/Projects/PhaseCongruency/example/src.hex", outBuf, sizeof(outBuf));
+        char outBuf[1024*1024];
+        ReadStrFromFile("/home/max/Projects/PhaseCongruency/example/src2.hex", outBuf, sizeof(outBuf));
 
-        // const int height = 165;
-        // const int width = 186;
-        // cv::Mat image(height, width, CV_8UC1);
-        // std::memcpy(image.data, outBuf, height*width);
-        // Mat img_src = image.clone();
+        // const int height = 307;
+        // const int width = 421;
+        const int height = 208;
+        const int width = 145;
+        cv::Mat image(height, width, CV_8UC1);
+        std::memcpy(image.data, outBuf, height*width);
+        Mat img_src = image.clone();
+        cv::imwrite("src.png", img_src);
 
         // 地图美化
         uchar* data = image.data;
@@ -133,11 +136,11 @@ int main(int argc, char** argv)
         cvtColor(img_src, color, COLOR_GRAY2RGB);
 
         // step2: 构造
-        PhaseCongruency pc(clean.size(), 4, 6);        
+        PhaseCongruency pc(clean.size(), 3, 8);        
 
         // step3: 检测角点
         vector<Corner> corners;
-        pc.detectCorners(clean, corners, 127, 10);
+        pc.detectCorners(clean, corners, 127, 15, 6);
 
         // step4: 将角点画出来
         // 坐标还原
@@ -145,7 +148,8 @@ int main(int argc, char** argv)
         double fy = (double)img_src.rows/size.height;
         for (auto it = corners.begin(); it != corners.end(); it++)
         {
-            std::cout << (*it).y * fy << " " << (*it).x * fx << std::endl;
+            std::cout << (*it).x  << " " << (*it).y << std::endl;
+            // std::cout << (*it).y * fy << " " << (*it).x * fx << std::endl;
             circle(color, Point((*it).y * fy, (*it).x * fx), 0.1, CV_RGB(0, 255, 0), 2);
         }
                         

@@ -1,4 +1,0 @@
-/home/max/Projects/PhaseCongruency/build/CMakeFiles/edit_cache.dir
-/home/max/Projects/PhaseCongruency/build/CMakeFiles/rebuild_cache.dir
-/home/max/Projects/PhaseCongruency/build/CMakeFiles/phase_congruency.dir
-/home/max/Projects/PhaseCongruency/build/CMakeFiles/phase_congruency_test.dir

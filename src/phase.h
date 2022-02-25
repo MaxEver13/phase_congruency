@@ -4,7 +4,7 @@
  * @Author: Jiawen Ji
  * @Date: 2021-12-22 10:52:25
  * @LastEditors: Jiawen Ji
- * @LastEditTime: 2022-01-06 16:02:35
+ * @LastEditTime: 2022-02-25 17:22:16
  */
 #pragma once
 #include <vector>
@@ -58,13 +58,14 @@ public:
    * @param {_cell_size} 栅格大小，默认为灰度图像15个像素宽度
    * @return : 0表示提取成功，-1表示提取失败
    */
-  int detectCorners(cv::Mat _image, std::vector<Corner>& _corners, int _threshold = 127, int _cell_size = 15);
+  int detectCorners(cv::Mat _image, std::vector<Corner>& _corners, int _threshold = 127, int _cell_size = 15, int dis_thre = 3);
 
 private:
   void setConst(PhaseCongruencyConst _pcc);
   void calc(cv::InputArray _src, std::vector<cv::Mat> &_pc);
   void feature(std::vector<cv::Mat> &_pc, cv::OutputArray _edges, cv::OutputArray _corners);
   void feature(cv::InputArray _src, cv::OutputArray _edges, cv::OutputArray _corners);
+  double distance(int x1, int y1, int x2, int y2);
 
 private:
     cv::Size size;
